@@ -1,7 +1,6 @@
-const puppeteer = require("puppeteer");
-const link = `https://theconcertdatabase.com/venues`;
+import puppeteer from "puppeteer";
 
-let getList = async (url) => {
+const list = async (url) => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation();
@@ -29,8 +28,7 @@ let getList = async (url) => {
   await browser.close();
 
   let res = urls;
-  console.log("RES", res);
   return res;
 };
 
-getList(link);
+export default list;

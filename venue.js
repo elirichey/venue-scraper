@@ -1,8 +1,6 @@
-const puppeteer = require("puppeteer");
-// const link = `https://theconcertdatabase.com/venues/vogue`;
-const link = `https://theconcertdatabase.com/venues/1st-mariner-arena`;
+import puppeteer from "puppeteer";
 
-let getVenue = async (url) => {
+const venue = async (url) => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const navigationPromise = page.waitForNavigation();
@@ -68,4 +66,4 @@ let getVenue = async (url) => {
   return res;
 };
 
-getVenue(link);
+export default venue;
