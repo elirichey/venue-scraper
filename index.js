@@ -5,21 +5,18 @@ let venues = [];
 
 let run = async () => {
   const link = `https://theconcertdatabase.com/venues`;
-  const singleVenueLink = `https://theconcertdatabase.com/venues/1st-mariner-arena`;
 
-  // Recursive...
   // Go through page...
   let pg1 = await list(link);
-  venues.push(pg1);
 
   // Until no more pages exist...
-  let singleVenue = await venue(singleVenueLink);
+  let allVenues = pg1.map(async (item) => {
+    let ven = await venue(item);
+    if (ven) venues.push(ven);
+  });
+  await Promise.all(allVenues);
 
-  // Final
-  let res = {
-    venues,
-    singleVenue,
-  };
+  let res = venues;
   console.log("RES", res);
 };
 run();

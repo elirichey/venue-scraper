@@ -62,7 +62,7 @@ const venue = async (url) => {
     res = { name, address, city, state, country };
   } else res = false;
 
-  console.log("RES", res);
+  // console.log("RES", res);
   return res;
 };
 
